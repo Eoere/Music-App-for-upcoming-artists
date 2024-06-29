@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Music App</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
+
     <h1>Music Uploads</h1>
     <form action="/upload" method="post" enctype="multipart/form-data">
         <label for="title">Title:</label>
@@ -30,14 +26,12 @@
             </form>
             {% for comment in music.comments %}
                 <p>{{ comment.content }} - {{ comment.user.username }}</p>
-                <form action="/delete_comment/{{ comment.id }}" method="post">
+                <form action="{{ url_for('views.delete_comment', comment_id=comment.id) }}" method="post">
                     <button type="submit">Delete</button>
                 </form>
             {% endfor %}
         </div>
     {% endfor %}
-</body>
-</html>
-
+{% endblock %}
 
 

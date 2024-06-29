@@ -2,6 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
+from flask_migrate import Migrate
 
 
 
@@ -17,6 +18,7 @@ def create_app():
     app.config['UPLOAD_FOLDER'] = 'website/static/uploads'
     
     db.init_app(app)
+    migrate = Migrate(app, db)
     from .views import views
     from .auth import auth
    

@@ -45,6 +45,7 @@ def comment(music_id):
 
 @views.route('/delete-comment/<int:comment_id>', methods=['POST'])
 def delete_comment(comment_id):
+    print(comment_id)
     comment = Comment.query.get_or_404(comment_id)
     db.session.delete(comment)
     db.session.commit()
